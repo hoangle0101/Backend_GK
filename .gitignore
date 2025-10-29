@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# User-uploaded files (IMPORTANT!)
+uploads/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
