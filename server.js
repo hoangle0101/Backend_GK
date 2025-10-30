@@ -33,9 +33,6 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
-    // Debug log để xem file client gửi lên
-    console.log('Multer fileFilter - originalname:', file.originalname, 'mimetype:', file.mimetype);
-
     // Cho phép mọi mime type image/* hoặc kiểm tra extension
     const allowedExts = /jpeg|jpg|png|gif|webp/;
     const extname = allowedExts.test(path.extname(file.originalname || '').toLowerCase().replace('.', ''));
@@ -116,7 +113,7 @@ app.get('/api/users', async (req, res) => {
     const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
 
     const users = await User.find(query)
-      .select('-password')
+   
       .sort({ [sortBy]: sortOrder })
       .skip((page - 1) * limit)
       .limit(limit);
@@ -220,7 +217,7 @@ async function updateUserHandler(req, res) {
       req.params.id,
       updateData,
       { new: true }
-    ).select('-password');
+    )
 
     if (user) {
       res.json({
